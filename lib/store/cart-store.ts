@@ -3,17 +3,15 @@ import { persist } from "zustand/middleware";
 
 export interface CartItem {
   id: number;
-  slug: string;
   name: string;
   price: number;
   quantity: number;
   image: string;
-  shortName: string;
 }
 
 interface CartState {
   items: CartItem[];
-  addItem: (item: Omit<CartItem, "quantity">, quantity: number) => void;
+  addItem: (item: Omit<CartItem, 'quantity'>, quantity: number) => void;
   removeItem: (id: number) => void;
   updateQuantity: (id: number, quantity: number) => void;
   clearCart: () => void;

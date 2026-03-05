@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Menu } from "lucide-react";
+import { Heart, Menu } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -18,15 +18,19 @@ import {
 } from "@/components/ui/sheet";
 import { useState } from "react";
 import { CartSheet } from "@/components/cart-sheet";
+import { useFavoritesStore } from "@/lib/store/favorites-store";
+import { useHydration } from "@/lib/hooks/use-store";
 
 const navigationItems = [
   { name: "HOME", href: "/" },
   { name: "PRODUCTS", href: "/products" },
-  { name: "FAVORITES", href: "/favorites" },
 ];
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const { items } = useFavoritesStore();
+  const isHydrated = useHydration();
+  const totalFavorites = isHydrated ? items.length : 0;
 
   return (
     <header className="mx-auto w-full bg-zinc-900 text-white">
@@ -86,7 +90,26 @@ export function Header() {
         </NavigationMenu>
 
         {/* Cart Button */}
-        <CartSheet />
+        <div className="flex items-center gap-4">
+          {/* Favorites Button */}
+          <Link href="/favorites">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="relative bg-transparent text-white hover:bg-white/10 hover:text-orange-500 cursor-pointer"
+            >
+              <Heart className="h-6 w-6" />
+              {totalFavorites > 0 && (
+                <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-orange-600 text-xs font-bold text-white">
+                  {totalFavorites}
+                </span>
+              )}
+              <span className="sr-only">View favorites</span>
+            </Button>
+          </Link>
+
+          <CartSheet />
+        </div>
       </div>
     </header>
   );

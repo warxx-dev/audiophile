@@ -1,7 +1,12 @@
-import { Product } from "@/lib/types";
+"use client";
+
+import type { Product, Media } from "@/src/payload-types";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "./ui/button";
+import { Heart } from "lucide-react";
+import { useFavoritesStore } from "@/lib/store/favorites-store";
+import { useHydration } from "@/lib/hooks/use-store";
 
 export const ProductCard = ({
   product,
@@ -10,6 +15,22 @@ export const ProductCard = ({
   product: Product;
   index: number;
 }) => {
+  const { toggleFavorite, isFavorite } = useFavoritesStore();
+  const isHydrated = useHydration();
+  const isProductFavorite = isHydrated ? isFavorite(product.id) : false;
+
+  const imageUrl = typeof product.image === "object" ? (product.image as Media).url ?? "" : "";
+
+  const handleToggleFavorite = () => {
+    toggleFavorite({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: imageUrl,
+      category: product.category,
+    });
+  };
+
   return (
     <div
       key={product.id}
@@ -24,7 +45,7 @@ export const ProductCard = ({
         }`}
       >
         <Image
-          src={product.image.desktop}
+          src={imageUrl}
           alt={product.name}
           fill
           className="object-contain p-12"
@@ -51,14 +72,30 @@ export const ProductCard = ({
         <p className="text-lg font-bold text-black">
           ${product.price.toLocaleString()}
         </p>
-        <Link href={`/products/${product.slug}`}>
+        <div className="flex items-center gap-4">
+          <Link href={`/products/${product.id}`}>
+            <Button
+              size="lg"
+              className="px-8 py-6 text-sm font-bold uppercase tracking-wider"
+            >
+              SEE PRODUCT
+            </Button>
+          </Link>
           <Button
+            variant="outline"
             size="lg"
-            className="px-8 py-6 text-sm font-bold uppercase tracking-wider"
+            onClick={handleToggleFavorite}
+            className={`px-4 py-6 ${
+              isProductFavorite
+                ? "border-orange-600 bg-orange-50 text-orange-600"
+                : "border-zinc-300 text-zinc-600 hover:border-orange-600"
+            }`}
           >
-            SEE PRODUCT
+            <Heart
+              className={`h-5 w-5 ${isProductFavorite ? "fill-current" : ""}`}
+            />
           </Button>
-        </Link>
+        </div>
       </div>
     </div>
   );

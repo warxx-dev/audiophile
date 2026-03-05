@@ -11,33 +11,31 @@ import {
 import { ShoppingCart, Trash2 } from "lucide-react";
 import { useCartStore } from "@/lib/store/cart-store";
 import { useState } from "react";
+import { useHydration } from "@/lib/hooks/use-store";
 
 export function CartSheet() {
-  const {
-    items,
-    removeItem,
-    updateQuantity,
-    getTotalItems,
-    getTotalPrice,
-    clearCart,
-  } = useCartStore();
-
+  const { items, removeItem, updateQuantity, clearCart } = useCartStore();
   const [open, setOpen] = useState(false);
+  const isHydrated = useHydration();
 
-  const totalItems = getTotalItems();
-  const totalPrice = getTotalPrice();
+  const totalItems = isHydrated
+    ? items.reduce((total, item) => total + item.quantity, 0)
+    : 0;
+  const totalPrice = isHydrated
+    ? items.reduce((total, item) => total + item.price * item.quantity, 0)
+    : 0;
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <button className="relative p-2 text-white transition-colors cursor-pointer hover:text-orange-600">
+        <Button className="bg-transparent relative p-2 text-white hover:bg-white/10 hover:text-orange-500 cursor-pointer">
           <ShoppingCart className="h-6 w-6" />
           {totalItems > 0 && (
             <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-orange-600 text-xs font-bold text-white">
               {totalItems}
             </span>
           )}
-        </button>
+        </Button>
       </PopoverTrigger>
       <PopoverContent align="end" className="w-[380px] rounded-lg p-6">
         <div className="flex items-center justify-between mb-6">
@@ -82,7 +80,7 @@ export function CartSheet() {
                     {/* Product Info */}
                     <div className="flex-1">
                       <h4 className="text-sm font-bold text-black">
-                        {item.shortName}
+                        {item.name}
                       </h4>
                       <p className="text-sm text-zinc-600">
                         ${item.price.toLocaleString()}
