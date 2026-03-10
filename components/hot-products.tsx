@@ -1,32 +1,32 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import Image from 'next/image'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 
 const products = [
   {
     id: 1,
-    name: "ZX9 SPEAKER",
+    name: 'ZX9 SPEAKER',
     description:
-      "Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.",
-    image: "/images/home/desktop/image-speaker-zx9-1.png",
-    href: "/products/zx9-speaker",
-    variant: "primary" as const,
+      'Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.',
+    image: '/images/home/desktop/image-speaker-zx9-1.png',
+    href: '/products/zx9-speaker',
+    variant: 'primary' as const,
   },
   {
     id: 2,
-    name: "ZX7 SPEAKER",
-    image: "/images/home/desktop/image-speaker-zx7.jpg",
-    href: "/products/zx7-speaker",
-    variant: "secondary" as const,
+    name: 'ZX7 SPEAKER',
+    image: '/images/home/desktop/image-speaker-zx7.jpg',
+    href: '/products/zx7-speaker',
+    variant: 'secondary' as const,
   },
   {
     id: 3,
-    name: "YX1 EARPHONES",
-    image: "/images/home/desktop/image-earphones-yx1.jpg",
-    href: "/products/yx1-earphones",
-    variant: "tertiary" as const,
+    name: 'YX1 EARPHONES',
+    image: '/images/home/desktop/image-earphones-yx1.jpg',
+    href: '/products/yx1-earphones',
+    variant: 'tertiary' as const,
   },
-];
+]
 
 export function HotProducts() {
   return (
@@ -40,12 +40,7 @@ export function HotProducts() {
         {/* ZX9 Speaker - Large Orange Card */}
         <div className="relative overflow-hidden rounded-lg px-12 py-20 lg:px-24 lg:py-32">
           <div className="absolute inset-0">
-            <Image
-              src={products[0].image}
-              alt={products[0].name}
-              fill
-              className="object-cover"
-            />
+            <Image src={products[0].image} alt={products[0].name} fill className="object-cover" />
           </div>
           <div className="relative flex items-center justify-end gap-12">
             {/* Right - Content */}
@@ -71,12 +66,7 @@ export function HotProducts() {
         {/* ZX7 Speaker - Gray Card with Background Image */}
         <div className="relative overflow-hidden rounded-lg">
           <div className="absolute inset-0">
-            <Image
-              src={products[1].image}
-              alt={products[1].name}
-              fill
-              className="object-cover"
-            />
+            <Image src={products[1].image} alt={products[1].name} fill className="object-cover" />
           </div>
           <div className="relative px-12 py-24 lg:px-24">
             <div className="space-y-6">
@@ -99,12 +89,7 @@ export function HotProducts() {
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
           {/* Left - Image */}
           <div className="relative h-[300px] overflow-hidden rounded-lg">
-            <Image
-              src={products[2].image}
-              alt={products[2].name}
-              fill
-              className="object-cover"
-            />
+            <Image src={products[2].image} alt={products[2].name} fill className="object-cover" />
           </div>
 
           {/* Right - Content */}
@@ -126,5 +111,5 @@ export function HotProducts() {
         </div>
       </div>
     </section>
-  );
+  )
 }
