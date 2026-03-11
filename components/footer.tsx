@@ -1,42 +1,23 @@
-import Link from "next/link";
-import { Facebook, Twitter, Instagram } from "lucide-react";
-
-const navigation = [
-  { name: "HOME", href: "/" },
-  { name: "HEADPHONES", href: "/headphones" },
-  { name: "SPEAKERS", href: "/speakers" },
-  { name: "EARPHONES", href: "/earphones" },
-];
+import { GithubIcon, LinkedinIcon } from '@/public/icons'
+import Link from 'next/link'
 
 const socialLinks = [
-  { name: "Facebook", icon: Facebook, href: "#" },
-  { name: "Twitter", icon: Twitter, href: "#" },
-  { name: "Instagram", icon: Instagram, href: "#" },
-];
+  { name: 'Github', icon: GithubIcon, href: 'https://github.com/warxx-dev' },
+  {
+    name: 'LinkedIn',
+    icon: LinkedinIcon,
+    href: 'https://www.linkedin.com/in/walter-carrazana-03091335a/',
+  },
+]
 
 export function Footer() {
   return (
     <footer className="w-full bg-zinc-900 text-white">
       <div className="mx-auto max-w-7xl px-6 py-12">
-        {/* Top section - Logo and Navigation */}
         <div className="mb-12 flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
-          {/* Logo */}
           <Link href="/" className="text-2xl font-bold tracking-wide">
             Sonus
           </Link>
-
-          {/* Navigation */}
-          <nav className="flex flex-col gap-4 sm:flex-row sm:gap-8">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-sm font-medium uppercase tracking-wider transition-colors hover:text-orange-600"
-              >
-                {item.name}
-              </Link>
-            ))}
-          </nav>
         </div>
 
         {/* Middle section - Description and Social */}
@@ -44,10 +25,9 @@ export function Footer() {
           {/* Description */}
           <div className="max-w-xl">
             <p className="text-sm leading-relaxed text-zinc-400">
-              Sonus is an all in one stop to fulfill your audio needs.
-              We&apos;re a small team of music lovers and sound specialists who
-              are devoted to helping you get the most out of personal audio.
-              Come and visit our demo facility - we&apos;re open 7 days a week.
+              Sonus is an all in one stop to fulfill your audio needs. We&apos;re a small team of
+              music lovers and sound specialists who are devoted to helping you get the most out of
+              personal audio. Come and visit our demo facility - we&apos;re open 7 days a week.
             </p>
           </div>
 
@@ -60,17 +40,15 @@ export function Footer() {
                 className="transition-colors hover:text-orange-600"
                 aria-label={social.name}
               >
-                <social.icon className="h-6 w-6" />
+                <social.icon />
               </Link>
             ))}
           </div>
         </div>
 
         {/* Bottom section - Copyright */}
-        <div className="text-sm text-zinc-400">
-          Copyright 2025. All Rights Reserved
-        </div>
+        <div className="text-sm text-zinc-400">Copyright 2025. All Rights Reserved</div>
       </div>
     </footer>
-  );
+  )
 }
