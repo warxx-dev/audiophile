@@ -1,71 +1,27 @@
-'use client'
-
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
-import { useParams } from 'next/navigation'
-import { Button } from '@/components/ui/button'
+import { notFound } from 'next/navigation'
 import { CategoriesSection } from '@/components/categories-section'
 import { AboutSection } from '@/components/about-section'
-import { useProductsStore } from '@/lib/store/products-store'
-import { useCartStore } from '@/lib/store/cart-store'
 import type { Media } from '@/src/payload-types'
+import { ArrowLeft } from 'lucide-react'
+import { RelatedProducts } from '@/components/related-products'
+import { getProductById, getRelatedProducts } from '@/src/app/actions/products'
+import { AddToCartClient } from '../../../../../components/ProductsPage/add-to-cart-client'
 
-export default function ProductPage() {
-  const params = useParams()
-  const id = Number(params.id)
+export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = await params
+  const id = Number(resolvedParams.id)
 
-  const { getProductById, fetchProducts, isLoading } = useProductsStore()
-  const { addItem } = useCartStore()
-  const product = getProductById(id)
-
-  const [quantity, setQuantity] = useState(1)
-
-  useEffect(() => {
-    fetchProducts()
-  }, [fetchProducts])
-
-  const handleDecrease = () => {
-    if (quantity > 1) setQuantity(quantity - 1)
-  }
-
-  const handleIncrease = () => {
-    setQuantity(quantity + 1)
-  }
-
-  const imageUrl =
-    product && typeof product.image === 'object' ? ((product.image as Media).url ?? '') : ''
-
-  const handleAddToCart = () => {
-    if (product) {
-      addItem(
-        {
-          id: product.id,
-          name: product.name,
-          price: product.price,
-          image: imageUrl,
-        },
-        quantity,
-      )
-      setQuantity(1)
-    }
-  }
-
-  if (isLoading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <p className="text-xl">Loading...</p>
-      </div>
-    )
-  }
+  const product = await getProductById(id)
 
   if (!product) {
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <p className="text-xl">Product not found</p>
-      </div>
-    )
+    notFound()
   }
+
+  const relatedProducts = await getRelatedProducts(id)
+
+  const imageUrl = typeof product.image === 'object' ? ((product.image as Media).url ?? '') : ''
 
   return (
     <>
@@ -75,15 +31,15 @@ export default function ProductPage() {
           {/* Go Back Link */}
           <Link
             href="/products"
-            className="mb-12 inline-block text-sm text-zinc-500 transition-colors hover:text-orange-600"
+            className="flex items-center gap-2 mb-12 text-lg text-zinc-500 transition-colors hover:text-orange-600"
           >
-            Go Back
+            <ArrowLeft /> Back
           </Link>
 
           {/* Product Grid */}
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
             {/* Left - Product Image */}
-            <div className="relative h-[400px] overflow-hidden rounded-lg bg-zinc-100 lg:h-[560px]">
+            <div className="relative h-100 overflow-hidden rounded-lg bg-zinc-100 lg:h-140">
               <Image src={imageUrl} alt={product.name} fill className="object-contain p-12" />
             </div>
 
@@ -100,38 +56,7 @@ export default function ProductPage() {
               <p className="text-base leading-relaxed text-zinc-600">{product.description}</p>
               <p className="text-2xl font-bold text-black">$ {product.price.toLocaleString()}</p>
 
-              {/* Quantity and Add to Cart */}
-              <div className="flex items-center gap-4">
-                {/* Quantity Selector */}
-                <div className="flex items-center bg-zinc-100">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={handleDecrease}
-                    className="h-12 px-4 text-zinc-500 hover:bg-transparent hover:text-orange-600"
-                  >
-                    -
-                  </Button>
-                  <span className="w-12 text-center text-sm font-bold text-black">{quantity}</span>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={handleIncrease}
-                    className="h-12 px-4 text-zinc-500 hover:bg-transparent hover:text-orange-600"
-                  >
-                    +
-                  </Button>
-                </div>
-
-                {/* Add to Cart Button */}
-                <Button
-                  size="lg"
-                  onClick={handleAddToCart}
-                  className="bg-orange-600 px-8 text-sm font-bold uppercase tracking-wider hover:bg-orange-700"
-                >
-                  ADD TO CART
-                </Button>
-              </div>
+              <AddToCartClient product={product} imageUrl={imageUrl} />
             </div>
           </div>
         </div>
@@ -182,7 +107,7 @@ export default function ProductPage() {
                   return (
                     <div
                       key={item.id ?? index}
-                      className="relative h-[300px] overflow-hidden rounded-lg"
+                      className="relative h-75 overflow-hidden rounded-lg"
                     >
                       <Image
                         src={galleryUrl}
@@ -196,7 +121,7 @@ export default function ProductPage() {
               </div>
               {/* Third image full height */}
               {product.gallery[2] && (
-                <div className="relative h-full min-h-[300px] overflow-hidden rounded-lg md:min-h-[624px]">
+                <div className="relative h-full min-h-75 overflow-hidden rounded-lg md:min-h-156">
                   <Image
                     src={
                       typeof product.gallery[2].image === 'object'
@@ -213,6 +138,8 @@ export default function ProductPage() {
           </div>
         </section>
       )}
+
+      <RelatedProducts relatedProducts={relatedProducts} />
 
       {/* Categories */}
       <CategoriesSection />

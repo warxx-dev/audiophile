@@ -1,19 +1,10 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-
-interface RelatedProduct {
-  slug: string;
-  name: string;
-  image: {
-    mobile: string;
-    tablet: string;
-    desktop: string;
-  };
-}
+import Image from 'next/image'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { Product } from '@/src/payload-types'
 
 interface RelatedProductsProps {
-  relatedProducts: RelatedProduct[];
+  relatedProducts: Product[]
 }
 
 export function RelatedProducts({ relatedProducts }: RelatedProductsProps) {
@@ -26,14 +17,11 @@ export function RelatedProducts({ relatedProducts }: RelatedProductsProps) {
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {relatedProducts.map((product) => (
-            <div
-              key={product.slug}
-              className="flex flex-col items-center space-y-6"
-            >
+            <div key={product.id} className="flex flex-col items-center space-y-6">
               {/* Product Image */}
               <div className="relative h-80 w-full overflow-hidden rounded-lg bg-zinc-100">
                 <Image
-                  src={product.image.desktop}
+                  src={product.image.toString()}
                   alt={product.name}
                   fill
                   className="object-contain p-8"
@@ -46,7 +34,7 @@ export function RelatedProducts({ relatedProducts }: RelatedProductsProps) {
               </h3>
 
               {/* See Product Button */}
-              <Link href={`/products/${product.slug.split("/")[1]}`}>
+              <Link href={`/products/${product.id}`}>
                 <Button
                   size="lg"
                   className="px-8 py-6 text-sm font-bold uppercase tracking-wider text-white"
@@ -59,5 +47,5 @@ export function RelatedProducts({ relatedProducts }: RelatedProductsProps) {
         </div>
       </div>
     </section>
-  );
+  )
 }

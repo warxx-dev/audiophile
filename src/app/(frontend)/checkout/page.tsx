@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button } from '@/components/ui/button'
@@ -18,6 +17,7 @@ import { useCartStore } from '@/lib/store/cart-store'
 import { ShoppingCart } from 'lucide-react'
 import { checkoutSchema, type CheckoutFormValues } from '@/lib/schemas/checkout-schema'
 import { createCheckoutSession } from '../../actions/checkout'
+import CartSheetItems from '@/components/Cart/cart-sheet-items'
 
 export default function CheckoutPage() {
   const { items, getTotalPrice } = useCartStore()
@@ -51,7 +51,7 @@ export default function CheckoutPage() {
             href="/"
             className="inline-block text-sm text-zinc-500 transition-colors hover:text-orange-600"
           >
-            Go Back
+            Change by an arrow icon Back
           </Link>
         </div>
       </section>
@@ -61,14 +61,12 @@ export default function CheckoutPage() {
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-                {/* Checkout Form */}
                 <div className="lg:col-span-2">
                   <div className="rounded-lg bg-white p-8 lg:p-12">
                     <h1 className="mb-8 text-3xl font-bold uppercase tracking-wide text-black">
                       CHECKOUT
                     </h1>
 
-                    {/* Billing Details */}
                     <div className="mb-8">
                       <h2 className="mb-4 text-sm font-bold uppercase tracking-wider text-orange-600">
                         BILLING DETAILS
@@ -114,7 +112,6 @@ export default function CheckoutPage() {
                       </div>
                     </div>
 
-                    {/* Shipping Info */}
                     <div className="mb-8">
                       <h2 className="mb-4 text-sm font-bold uppercase tracking-wider text-orange-600">
                         SHIPPING INFO
@@ -163,14 +160,12 @@ export default function CheckoutPage() {
                   </div>
                 </div>
 
-                {/* Summary */}
                 <div className="lg:col-span-1">
                   <div className="rounded-lg bg-white p-8">
                     <h2 className="mb-6 text-lg font-bold uppercase tracking-wide text-black">
                       SUMMARY
                     </h2>
 
-                    {/* Cart Items */}
                     {items.length === 0 ? (
                       <div className="flex flex-col items-center justify-center py-12">
                         <ShoppingCart className="mb-4 h-16 w-16 text-zinc-300" />
@@ -181,49 +176,12 @@ export default function CheckoutPage() {
                       </div>
                     ) : (
                       <>
-                        <div className="mb-6 space-y-6">
-                          {items.map((item) => (
-                            <div key={item.id} className="flex items-center gap-4">
-                              <div className="relative h-16 w-16 overflow-hidden rounded-lg bg-zinc-100">
-                                <Image
-                                  src={item.image}
-                                  alt={item.name}
-                                  fill
-                                  className="object-contain p-2"
-                                />
-                              </div>
-                              <div className="flex-1">
-                                <p className="text-sm font-bold text-black">{item.name}</p>
-                                <p className="text-sm text-zinc-500">
-                                  $ {item.price.toLocaleString()}
-                                </p>
-                              </div>
-                              <p className="text-sm font-bold text-zinc-500">x{item.quantity}</p>
-                            </div>
-                          ))}
-                        </div>
-
-                        {/* Totals */}
-                        <div className="space-y-2 border-t border-zinc-200 pt-6">
-                          <div className="flex justify-between">
-                            <p className="text-sm uppercase text-zinc-500">TOTAL</p>
-                            <p className="text-lg font-bold text-black">
-                              $ {subtotal.toLocaleString()}
-                            </p>
-                          </div>
-                          <div className="flex justify-between">
-                            <p className="text-sm uppercase text-zinc-500">SHIPPING</p>
-                            <p className="text-lg font-bold text-black">$ {shipping}</p>
-                          </div>
-                          <div className="flex justify-between pt-4">
-                            <p className="text-sm uppercase text-zinc-500">GRAND TOTAL</p>
-                            <p className="text-lg font-bold text-orange-600">
-                              $ {total.toLocaleString()}
-                            </p>
-                          </div>
-                        </div>
-
-                        {/* Continue & Pay Button */}
+                        <CartSheetItems
+                          items={items}
+                          shipping={shipping}
+                          subtotal={subtotal}
+                          total={total}
+                        />
                         <Button
                           type="submit"
                           size="lg"
