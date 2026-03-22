@@ -5,7 +5,7 @@ import { Footer } from 'components/footer'
 import { Toaster } from 'sonner'
 
 export const metadata: Metadata = {
-  title: 'Sonus - Premium Audio Equipment',
+  title: 'Audiophile - Premium Audio Equipment',
   description: 'High end headphones, earphones, speakers, and audio accessories',
 }
 

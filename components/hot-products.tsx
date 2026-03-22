@@ -44,12 +44,10 @@ export function HotProducts() {
           <div className="relative flex items-center justify-end gap-12">
             {/* Right - Content */}
             <div className="space-y-6 text-center lg:text-left">
-              <h2 className="text-4xl font-bold uppercase tracking-wide text-white lg:text-6xl">
+              <h2 className="text-4xl font-bold uppercase tracking-wide text-black md:text-white lg:text-6xl">
                 {products[0].name}
               </h2>
-              <p className="max-w-md text-lg leading-relaxed text-white/90">
-                {products[0].description}
-              </p>
+
               <SeeProductButton
                 href={products[0].href}
                 className="bg-black px-8 py-6 text-sm font-bold uppercase tracking-wider text-white hover:bg-zinc-800"
