@@ -7,7 +7,7 @@ const products = [
     name: 'ZX9 SPEAKER',
     description:
       'Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.',
-    image: '/images/home/desktop/image-speaker-zx9-1.png',
+    image: '/images/home/desktop/image-speaker-zx9.png',
     href: '/products/6',
     variant: 'primary' as const,
   },
