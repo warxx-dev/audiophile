@@ -30,7 +30,7 @@ export const ProductListCard = ({ product, index }: { product: Product; index: n
   return (
     <div
       key={product.id}
-      className={`grid grid-cols-1 items-center gap-12 lg:grid-cols-2 ${
+      className={`animate-fade-in-up grid grid-cols-1 items-center gap-12 lg:grid-cols-2 ${
         index % 2 === 1 ? 'lg:flex-row-reverse' : ''
       }`}
     >
@@ -62,7 +62,7 @@ export const ProductListCard = ({ product, index }: { product: Product; index: n
             <Button
               disabled={loading}
               size="lg"
-              className="px-8 py-6 text-sm font-bold uppercase tracking-wider"
+              className="px-8 py-6 text-sm font-bold uppercase tracking-wider hover:scale-105 transition-transform"
               onClick={() => {
                 setLoading(true)
               }}

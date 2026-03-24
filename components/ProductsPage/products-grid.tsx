@@ -16,7 +16,7 @@ function ProductsGridContent() {
 
   const [priceRange, setPriceRange] = useState([0, 5000])
   const [showNewOnly, setShowNewOnly] = useState(false)
-  const [viewMode, setViewMode] = useState<'list' | 'grid'>('list')
+  const [viewMode, setViewMode] = useState<'list' | 'grid'>('grid')
 
   const [selectedCategories, setSelectedCategories] = useState<string[]>(() => {
     return categoryParam ? [categoryParam] : []

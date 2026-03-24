@@ -28,7 +28,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
   }
 
   return (
-    <div className="group flex flex-col overflow-hidden rounded-lg border border-zinc-200 bg-white transition-shadow hover:shadow-lg">
+    <div className="animate-fade-in-up group flex flex-col overflow-hidden rounded-lg border border-zinc-200 bg-white transition-shadow hover:shadow-lg">
       {/* Product Image */}
       <div className="relative h-70 overflow-hidden bg-zinc-100">
         <Image
@@ -56,7 +56,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
             <Button
               size="lg"
               disabled={loading}
-              className="w-full text-sm font-bold uppercase tracking-wider"
+              className="w-full text-sm font-bold uppercase tracking-wider hover:scale-105 transition-transform"
               onClick={() => setLoading(true)}
             >
               {loading ? 'LOADING...' : 'SEE PRODUCT'}

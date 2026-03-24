@@ -11,9 +11,9 @@ import {
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { useState } from 'react'
-import { CartSheet } from '@/components/cart-sheet'
 import { useFavoritesStore } from '@/lib/store/favorites-store'
 import { useHydration } from '@/lib/hooks/use-store'
+import { CartSheet } from './Cart/cart-sheet'
 
 const navigationItems = [
   { name: 'HOME', href: '/' },
