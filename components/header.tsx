@@ -18,6 +18,7 @@ import { CartSheet } from './Cart/cart-sheet'
 const navigationItems = [
   { name: 'HOME', href: '/' },
   { name: 'PRODUCTS', href: '/products' },
+  { name: 'ABOUT', href: '/about' },
 ]
 
 export function Header() {

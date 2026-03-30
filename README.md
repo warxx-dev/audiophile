@@ -1,67 +1,130 @@
-# Payload Blank Template
+## Audiophile – Tienda de audio
 
-This template comes configured with the bare minimum to get started on anything you need.
+Aplicación e‑commerce inspirada en Audiophile para la venta de productos de audio premium (audífonos, parlantes y earphones), construida con Next.js 15 y Payload CMS 3 como panel de administración y API.
 
-## Quick start
+La app ofrece un catálogo navegable, sistema de carrito y favoritos persistentes, flujo de checkout con validación y una interfaz moderna y responsive.
 
-This template can be deployed directly from our Cloud hosting and it will setup MongoDB and cloud S3 object storage for media.
+## Resumen del proyecto
 
-## Quick Start - local setup
+- Frontend público en Next.js (App Router) para listar, filtrar y detallar productos.
+- Backend y panel de administración con Payload CMS para gestionar usuarios, media y productos.
+- Persistencia de carrito y favoritos en el navegador usando Zustand + localStorage.
+- Flujo de compra con resumen del pedido y preparación para pago vía Stripe.
 
-To spin up this template locally, follow these steps:
+## Funcionalidades principales
 
-### Clone
+- **Catálogo de productos**
+  - Listado de productos con diseño responsive.
+  - Página de detalle con descripción, precio, galería de imágenes, características (features) y contenido de la caja (inTheBox).
+  - Sección de productos relacionados en la vista de detalle.
 
-After you click the `Deploy` button above, you'll want to have standalone copy of this repo on your machine. If you've already cloned this repo, skip to [Development](#development).
+- **Filtros y exploración**
+  - Filtro por rango de precio mediante slider.
+  - Filtro por categoría (headphones, speakers, earphones).
+  - Opción para mostrar solo productos marcados como "new".
 
-### Development
+- **Carrito de compras**
+  - Carrito desplegable desde el header con contador de ítems.
+  - Añadir productos desde la ficha de producto y desde favoritos.
+  - Actualizar cantidades, eliminar productos y vaciar el carrito.
+  - Cálculo automático de subtotal y total.
 
-1. First [clone the repo](#clone) if you have not done so already
-2. `cd my-project && cp .env.example .env` to copy the example environment variables. You'll need to add the `MONGODB_URL` from your Cloud project to your `.env` if you want to use S3 storage and the MongoDB database that was created for you.
+- **Favoritos**
+  - Añadir y quitar productos de la lista de favoritos.
+  - Página dedicada de favoritos con tarjetas de producto.
+  - Posibilidad de mover productos de favoritos al carrito.
+  - Persistencia en localStorage (se mantiene entre sesiones).
 
-3. `pnpm install && pnpm dev` to install dependencies and start the dev server
-4. open `http://localhost:3000` to open the app in your browser
+- **Checkout**
+  - Formulario de checkout con validación usando Zod (nombre, email, dirección, país).
+  - Resumen del pedido con productos, subtotal, envío fijo y total.
+  - Botón para continuar con el flujo de pago (Stripe).
 
-That's it! Changes made in `./src` will be reflected in your app. Follow the on-screen instructions to login and create your first admin user. Then check out [Production](#production) once you're ready to build and serve your app, and [Deployment](#deployment) when you're ready to go live.
+- **Panel de administración (Payload)**
+  - Gestión de usuarios (colección `Users`).
+  - Gestión de media (colección `Media`) con subida de imágenes.
+  - Gestión de productos (colección `Products`) con campos para nombre, precio, categoría, si es nuevo, descripción, imagen principal, galería, features e items incluidos en la caja.
 
-#### Docker (Optional)
+## Habilidades demostradas
 
-If you prefer to use Docker for local development instead of a local MongoDB instance, the provided docker-compose.yml file can be used.
+- **Frontend con React/Next.js**
+  - Uso de Next.js 15 (App Router) y componentes server/client.
+  - Composición de layouts y secciones (home, productos, detalle, checkout, favoritos).
+  - Componentes reutilizables de UI (botones, inputs, popovers, sliders, etc.).
 
-To do so, follow these steps:
+- **Gestión de estado y UX**
+  - Manejo de estado global con Zustand para carrito y favoritos.
+  - Persistencia en localStorage mediante middlewares de Zustand.
+  - Feedback al usuario mediante toasts (sonner) y estados visuales.
 
-- Modify the `MONGODB_URL` in your `.env` file to `mongodb://127.0.0.1/<dbname>`
-- Modify the `docker-compose.yml` file's `MONGODB_URL` to match the above `<dbname>`
-- Run `docker-compose up` to start the database, optionally pass `-d` to run in the background.
+- **Validación y formularios**
+  - Formularios con React Hook Form.
+  - Validación declarativa con Zod (schema de checkout).
 
-## How it works
+- **Backend y CMS con Payload**
+  - Definición de colecciones tipadas en Payload (Users, Media, Products).
+  - Configuración de base de datos SQLite con el adapter oficial.
+  - Integración de almacenamiento de media con Vercel Blob.
 
-The Payload config is tailored specifically to the needs of most websites. It is pre-configured in the following ways:
+- **Testing y calidad**
+  - Pruebas end‑to‑end con Playwright.
+  - Pruebas de integración con Vitest + Testing Library.
+  - Configuración de ESLint y Prettier.
 
-### Collections
+## Tecnologías utilizadas
 
-See the [Collections](https://payloadcms.com/docs/configuration/collections) docs for details on how to extend this functionality.
+- **Frontend**
+  - Next.js 15
+  - React 19
+  - TypeScript
+  - Tailwind CSS 4
+  - Shadcn (checkbox, dialog, navigation-menu, popover, select, slider…)
+  - Lucide React (iconos)
 
-- #### Users (Authentication)
+- **Estado y formularios**
+  - Zustand (+ `persist` middleware)
+  - React Hook Form
+  - Zod (validación de esquemas)
 
-  Users are auth-enabled collections that have access to the admin panel.
+- **Backend / CMS**
+  - Payload CMS 3
+  - @payloadcms/db-sqlite
+  - @payloadcms/richtext-lexical
+  - @payloadcms/storage-vercel-blob
 
-  For additional help, see the official [Auth Example](https://github.com/payloadcms/payload/tree/main/examples/auth) or the [Authentication](https://payloadcms.com/docs/authentication/overview#authentication-overview) docs.
+- **Pagos y servicios externos**
+  - Stripe (SDK de cliente y servidor)
+  - Vercel Blob para almacenamiento de imágenes
 
-- #### Media
+- **Testing y tooling**
+  - Playwright (@playwright/test)
+  - Vitest
+  - @testing-library/react
+  - ESLint, Prettier
 
-  This is the uploads enabled collection. It features pre-configured sizes, focal point and manual resizing to help you manage your pictures.
+## Puesta en marcha (desarrollo)
 
-### Docker
+1. Instalar dependencias:
+   ```bash
+   pnpm install
+   ```
+2. Crear el archivo de variables de entorno (si existe `.env.example`):
+   ```bash
+   cp .env.example .env
+   ```
+   y completar las variables necesarias (por ejemplo `PAYLOAD_SECRET`, `DATABASE_URI`, `DATABASE_TOKEN`, `BLOB_READ_WRITE_TOKEN`, claves de Stripe, etc.).
+3. Levantar el entorno de desarrollo:
+   ```bash
+   pnpm dev
+   ```
+4. Abrir el frontend en `http://localhost:3000`.
+5. Acceder al panel de administración de Payload en la ruta `/admin` para crear el usuario admin inicial y empezar a cargar productos.
 
-Alternatively, you can use [Docker](https://www.docker.com) to spin up this template locally. To do so, follow these steps:
+## Scripts útiles
 
-1. Follow [steps 1 and 2 from above](#development), the docker-compose file will automatically use the `.env` file in your project root
-1. Next run `docker-compose up`
-1. Follow [steps 4 and 5 from above](#development) to login and create your first admin user
-
-That's it! The Docker instance will help you get up and running quickly while also standardizing the development environment across your teams.
-
-## Questions
-
-If you have any issues or questions, reach out to us on [Discord](https://discord.com/invite/payload) or start a [GitHub discussion](https://github.com/payloadcms/payload/discussions).
+- `pnpm dev` – Ejecuta el entorno de desarrollo.
+- `pnpm build` – Genera el build de producción.
+- `pnpm start` – Levanta la app en modo producción.
+- `pnpm test` – Ejecuta pruebas de integración y E2E.
+- `pnpm test:int` – Solo pruebas de integración (Vitest).
+- `pnpm test:e2e` – Solo pruebas end‑to‑end (Playwright).
