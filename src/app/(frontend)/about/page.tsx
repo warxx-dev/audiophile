@@ -7,17 +7,17 @@ export default function AboutPage() {
       <section className="mb-16 md:mb-24">
         <div className="flex flex-col items-center text-center">
           <h1 className="mb-6 text-4xl font-bold uppercase tracking-wide text-black md:text-5xl">
-            Audiophile – Tienda de audio
+            Audiophile – Audio Gear
           </h1>
           <p className="max-w-3xl text-lg leading-relaxed text-zinc-600 md:text-xl">
-            Aplicación e‑commerce inspirada en Audiophile para la venta de productos de audio
-            premium. Construida con <span className="font-bold text-black">Next.js 15</span> y{' '}
-            <span className="font-bold text-black">Payload CMS 3</span> como panel de administración
-            y API. Ofrece un catálogo navegable, sistema de carrito y favoritos persistentes, flujo
-            de checkout con validación y una interfaz moderna y responsive.
+            An e-commerce application inspired by Audiophile for selling premium audio gear. Built
+            with <span className="font-bold text-black">Next.js 15</span> and{' '}
+            <span className="font-bold text-black">Payload CMS 3</span> providing the admin panel
+            and REST/GraphQL APIs. It features a navigable catalog, persistent cart and favorites, a
+            full checkout flow with validation, all wrapped in a modern, responsive UI.
           </p>
           <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-4 py-2 text-sm font-medium text-zinc-600 shadow-sm">
-            Diseño original por{' '}
+            Original design provided by{' '}
             <a
               href="https://www.frontendmentor.io"
               target="_blank"
@@ -30,58 +30,64 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Resumen & Key Points Section */}
+      {/* Overview & Key Points Section */}
       <section className="mb-20 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-8">
         <div className="rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm lg:p-10">
           <h2 className="mb-8 text-2xl font-bold uppercase tracking-wider text-black">
-            Resumen del proyecto
+            Project Overview
           </h2>
           <ul className="space-y-6">
             <ListItem icon={<Layout className="text-orange-600" />}>
-              <strong>Frontend público</strong> en Next.js (App Router) para listar, filtrar y
-              detallar productos.
+              <strong>Public Frontend</strong> in Next.js (App Router) for listing, filtering, and
+              product details.
             </ListItem>
             <ListItem icon={<Database className="text-orange-600" />}>
-              <strong>Backend y CMS</strong> con Payload CMS para gestionar usuarios, media y
-              productos.
+              <strong>Backend & CMS</strong> powered by Payload CMS to manage users, media, and
+              products.
             </ListItem>
             <ListItem icon={<Smartphone className="text-orange-600" />}>
-              <strong>Persistencia</strong> de carrito y favoritos usando Zustand + localStorage.
+              <strong>State Persistence</strong> for cart and favorites using Zustand +
+              localStorage.
             </ListItem>
             <ListItem icon={<Wallet className="text-orange-600" />}>
-              <strong>Flujo de compra</strong> con resumen y preparación para pagos vía Stripe.
+              <strong>Checkout Flow</strong> showcasing an order summary and preparing for Stripe
+              payments.
             </ListItem>
           </ul>
         </div>
 
         <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-8 shadow-sm lg:p-10">
           <h2 className="mb-8 text-2xl font-bold uppercase tracking-wider text-black">
-            Funcionalidades principales
+            Key Features
           </h2>
           <ul className="space-y-4 text-zinc-700">
             <li>
               <Check className="mr-2 inline h-5 w-5 text-orange-600" />{' '}
-              <strong>Catálogo de productos:</strong> Listado responsive y páginas detalladas.
+              <strong>Product Catalog:</strong> Fully responsive grid and deeply detailed product
+              pages.
             </li>
             <li>
               <Check className="mr-2 inline h-5 w-5 text-orange-600" />{' '}
-              <strong>Filtros avanzados:</strong> Por precio (slider), categoría y novedades.
+              <strong>Advanced Filters:</strong> Filter by price (slider), category, and new
+              arrivals.
             </li>
             <li>
               <Check className="mr-2 inline h-5 w-5 text-orange-600" />{' '}
-              <strong>Carrito inteligente:</strong> Añadir items, calculadora de subtotal y total.
+              <strong>Smart Cart:</strong> Slide-out cart to add items, calculate subtotals, and
+              totals.
             </li>
             <li>
-              <Check className="mr-2 inline h-5 w-5 text-orange-600" /> <strong>Favoritos:</strong>{' '}
-              Wishlist privada que persiste sesiones.
-            </li>
-            <li>
-              <Check className="mr-2 inline h-5 w-5 text-orange-600" />{' '}
-              <strong>Checkout validado:</strong> Zod en el front para asegurar datos correctos.
+              <Check className="mr-2 inline h-5 w-5 text-orange-600" /> <strong>Favorites:</strong>{' '}
+              Private wishlist that persists across browser sessions.
             </li>
             <li>
               <Check className="mr-2 inline h-5 w-5 text-orange-600" />{' '}
-              <strong>Panel de Administración:</strong> Interfaz gráfica limpia para moderadores.
+              <strong>Validated Checkout:</strong> Zod integration ensures accurate shipping and
+              billing data.
+            </li>
+            <li>
+              <Check className="mr-2 inline h-5 w-5 text-orange-600" />{' '}
+              <strong>Admin Panel:</strong> Clean, powerful graphical interface for site moderators.
             </li>
           </ul>
         </div>
@@ -91,7 +97,7 @@ export default function AboutPage() {
       <section className="mb-20">
         <div className="mb-12 text-center">
           <h2 className="text-3xl font-bold uppercase tracking-wider text-black">
-            Habilidades demostradas
+            Demonstrated Skills
           </h2>
         </div>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -100,48 +106,48 @@ export default function AboutPage() {
             icon={<Layout className="h-8 w-8 text-orange-600" />}
             skills={[
               'Next.js 15 (App Router)',
-              'Componentes Server/Client',
-              'Composición de layouts',
-              'Radix UI / Accesibilidad',
+              'Server & Client Components',
+              'Complex UI Layout Compositions',
+              'Radix UI / Accessibility Patterns',
             ]}
           />
           <SkillCard
-            title="Estado & UX"
+            title="State & UX"
             icon={<Zap className="h-8 w-8 text-orange-600" />}
             skills={[
-              'Estado global con Zustand',
-              'Persistencia localStorage',
-              'Toasts y Feedback (Sonner)',
-              'Flujos reactivos optimizados',
+              'Global State with Zustand',
+              'localStorage persistence',
+              'Toast Notifications (Sonner)',
+              'Optimized Reactive Flows',
             ]}
           />
           <SkillCard
-            title="Validación & Form"
+            title="Validation & Forms"
             icon={<Check className="h-8 w-8 text-orange-600" />}
             skills={[
-              'React Hook Form',
-              'Validación con Zod',
-              'Manejo de errores UX',
-              'Schema validation',
+              'React Hook Form Integration',
+              'Declarative Validation with Zod',
+              'UX Error Handling',
+              'Strict Schema Checking',
             ]}
           />
           <SkillCard
             title="Backend / Payload"
             icon={<Server className="h-8 w-8 text-orange-600" />}
             skills={[
-              'Payload CMS 3 config',
-              'Colecciones tipadas',
-              'Adapter SQLite',
-              'Vercel Blob Storage',
+              'Payload CMS 3 Configuration',
+              'Strongly Typed Collections',
+              'SQLite Database Adapter',
+              'Vercel Blob Storage Integration',
             ]}
           />
           <SkillCard
             title="Testing & Tooling"
             icon={<Code2 className="h-8 w-8 text-orange-600" />}
             skills={[
-              'E2E con Playwright',
-              'Integración / Vitest',
-              'Testing Library',
+              'E2E Testing with Playwright',
+              'Integration tests / Vitest',
+              'React Testing Library',
               'Linting & Formatting (ESLint)',
             ]}
           />
@@ -151,7 +157,7 @@ export default function AboutPage() {
       {/* Tech Stack Area */}
       <section className="rounded-2xl bg-black p-8 text-white lg:p-12">
         <h2 className="mb-8 text-center text-3xl font-bold uppercase tracking-wider text-white">
-          Stack Tecnológico
+          Tech Stack
         </h2>
         <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-4">
           <TechItem label="Next.js 15" />
@@ -212,7 +218,7 @@ function SkillCard({
 
 function TechItem({ label }: { label: string }) {
   return (
-    <div className="flex items-center border border-zinc-800 bg-zinc-900 justify-center rounded-lg p-4 text-center text-sm font-medium text-zinc-300 transition-colors hover:border-orange-600 hover:text-orange-500">
+    <div className="flex items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900 p-4 text-center text-sm font-medium text-zinc-300 transition-colors hover:border-orange-600 hover:text-orange-500">
       {label}
     </div>
   )

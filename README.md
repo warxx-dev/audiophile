@@ -1,130 +1,131 @@
-## Audiophile – Tienda de audio
+## Audiophile – Audio Gear
 
-Aplicación e‑commerce inspirada en Audiophile para la venta de productos de audio premium (audífonos, parlantes y earphones), construida con Next.js 15 y Payload CMS 3 como panel de administración y API.
+An e-commerce application inspired by Audiophile for selling premium audio gear (headphones, speakers, and earphones).
+Built with Next.js 15 and Payload CMS 3 providing the admin panel and APIs.
 
-La app ofrece un catálogo navegable, sistema de carrito y favoritos persistentes, flujo de checkout con validación y una interfaz moderna y responsive.
+It features a navigable catalog, persistent cart and favorites, a full checkout flow with validation, all wrapped in a modern, responsive UI.
 
-## Resumen del proyecto
+## Project Overview
 
-- Frontend público en Next.js (App Router) para listar, filtrar y detallar productos.
-- Backend y panel de administración con Payload CMS para gestionar usuarios, media y productos.
-- Persistencia de carrito y favoritos en el navegador usando Zustand + localStorage.
-- Flujo de compra con resumen del pedido y preparación para pago vía Stripe.
+- Public Frontend in Next.js (App Router) for listing, filtering, and deeply detailed product pages.
+- Backend & CMS powered by Payload CMS to manage users, media, and products.
+- State Persistence for cart and favorites using Zustand + localStorage.
+- Checkout Flow showcasing an order summary and preparing for Stripe payments.
 
-## Funcionalidades principales
+## Key Features
 
-- **Catálogo de productos**
-  - Listado de productos con diseño responsive.
-  - Página de detalle con descripción, precio, galería de imágenes, características (features) y contenido de la caja (inTheBox).
-  - Sección de productos relacionados en la vista de detalle.
+- **Product Catalog:**
+  - Fully responsive grid rendering.
+  - Detail page with rich descriptions, price, image gallery, features, and an "In The Box" breakdown.
+  - Dynamic "Related Products" section on detail cards.
 
-- **Filtros y exploración**
-  - Filtro por rango de precio mediante slider.
-  - Filtro por categoría (headphones, speakers, earphones).
-  - Opción para mostrar solo productos marcados como "new".
+- **Advanced Filters:**
+  - Filter by price leveraging a custom slider.
+  - Filter by categorized products (headphones, speakers, earphones).
+  - Explicit option to highlight "New" products.
 
-- **Carrito de compras**
-  - Carrito desplegable desde el header con contador de ítems.
-  - Añadir productos desde la ficha de producto y desde favoritos.
-  - Actualizar cantidades, eliminar productos y vaciar el carrito.
-  - Cálculo automático de subtotal y total.
+- **Smart Cart:**
+  - Slide-out/popover cart available globally from the header alongside an item counter.
+  - Options to add items directly from product cards or favorite lists.
+  - Update quantities, trash items individually, and clear the complete cart.
+  - Autocalculated subtotal handling and shipping rules.
 
-- **Favoritos**
-  - Añadir y quitar productos de la lista de favoritos.
-  - Página dedicada de favoritos con tarjetas de producto.
-  - Posibilidad de mover productos de favoritos al carrito.
-  - Persistencia en localStorage (se mantiene entre sesiones).
+- **Favorites:**
+  - Private wishlist capabilities to toggle favorite assets.
+  - Dedicated customized favorites page showing product cards.
+  - Fast-action buttons to transfer favorites straight into the cart.
+  - Persists gracefully within local browser storage.
 
-- **Checkout**
-  - Formulario de checkout con validación usando Zod (nombre, email, dirección, país).
-  - Resumen del pedido con productos, subtotal, envío fijo y total.
-  - Botón para continuar con el flujo de pago (Stripe).
+- **Validated Checkout:**
+  - Integrated Zod schema powering React Hook Form logic ensuring (name, email, address, country) sanity.
+  - Summary section breaking down line items, cart subtotal, rigid shipping fees, and an aggregate total.
+  - Continues naturally towards generic external payment gates (e.g. Stripe checkout).
 
-- **Panel de administración (Payload)**
-  - Gestión de usuarios (colección `Users`).
-  - Gestión de media (colección `Media`) con subida de imágenes.
-  - Gestión de productos (colección `Products`) con campos para nombre, precio, categoría, si es nuevo, descripción, imagen principal, galería, features e items incluidos en la caja.
+- **Admin Panel (Payload):**
+  - Smooth user administration (`Users` collection).
+  - Advanced media bucket management (`Media` collection) using external blob storage.
+  - Robust product modeling (`Products` collection) wrapping arrays, image relations, rich text and toggles easily manageable via GUI.
 
-## Habilidades demostradas
+## Demonstrated Skills
 
-- **Frontend con React/Next.js**
-  - Uso de Next.js 15 (App Router) y componentes server/client.
-  - Composición de layouts y secciones (home, productos, detalle, checkout, favoritos).
-  - Componentes reutilizables de UI (botones, inputs, popovers, sliders, etc.).
+- **Frontend with React / Next.js:**
+  - Using Next.js 15 (App Router paradigm) separating elegantly Server vs Client components.
+  - Composing solid aesthetic layouts (home, catalog, detailed views, checkout, favorites).
+  - Constructing granular, accessible Radix UI parts gracefully via Tailwind 4 snippets.
 
-- **Gestión de estado y UX**
-  - Manejo de estado global con Zustand para carrito y favoritos.
-  - Persistencia en localStorage mediante middlewares de Zustand.
-  - Feedback al usuario mediante toasts (sonner) y estados visuales.
+- **State & UX:**
+  - Fluid global state architectures with Zustand preventing prop-drilling contexts.
+  - `persist` middleware automatically serializing required stores.
+  - Immediate user feedback flows using tailored toasts (sonner).
 
-- **Validación y formularios**
-  - Formularios con React Hook Form.
-  - Validación declarativa con Zod (schema de checkout).
+- **Validation & Forms:**
+  - Managing forms strictly typing variables via React Hook Form.
+  - Declarative constraints enforced through Zod schemas.
 
-- **Backend y CMS con Payload**
-  - Definición de colecciones tipadas en Payload (Users, Media, Products).
-  - Configuración de base de datos SQLite con el adapter oficial.
-  - Integración de almacenamiento de media con Vercel Blob.
+- **Backend & CMS with Payload:**
+  - Designing rigid, strongly typed collections (Users, Media, Products).
+  - Powering the local core leveraging robust official SQLite database adapters.
+  - Offloading media seamlessly using the `@payloadcms/storage-vercel-blob` plugin workflow.
 
-- **Testing y calidad**
-  - Pruebas end‑to‑end con Playwright.
-  - Pruebas de integración con Vitest + Testing Library.
-  - Configuración de ESLint y Prettier.
+- **Testing & Quality:**
+  - E2E automated test specs using Playwright.
+  - Component and API integration using Vitest + Testing Library principles.
+  - Strict formatting pipelines matching ESLint and Prettier configs.
 
-## Tecnologías utilizadas
+## Technologies Used
 
-- **Frontend**
+- **Frontend:**
   - Next.js 15
   - React 19
   - TypeScript
   - Tailwind CSS 4
-  - Shadcn (checkbox, dialog, navigation-menu, popover, select, slider…)
-  - Lucide React (iconos)
+  - Radix UI primitives (checkbox, dialog, navigation-menu, popover, select, slider)
+  - Lucide React (feather icons suite)
 
-- **Estado y formularios**
-  - Zustand (+ `persist` middleware)
+- **State & Forms:**
+  - Zustand (w/ persist middleware)
   - React Hook Form
-  - Zod (validación de esquemas)
+  - Zod (schema validations)
 
-- **Backend / CMS**
+- **Backend / CMS:**
   - Payload CMS 3
   - @payloadcms/db-sqlite
   - @payloadcms/richtext-lexical
   - @payloadcms/storage-vercel-blob
 
-- **Pagos y servicios externos**
-  - Stripe (SDK de cliente y servidor)
-  - Vercel Blob para almacenamiento de imágenes
+- **Payments & External:**
+  - Stripe SDK (server instances & frontend injections)
+  - Vercel Blob integrations
 
-- **Testing y tooling**
-  - Playwright (@playwright/test)
+- **Testing & Tooling:**
+  - Playwright
   - Vitest
   - @testing-library/react
   - ESLint, Prettier
 
-## Puesta en marcha (desarrollo)
+## Running Locally
 
-1. Instalar dependencias:
+1. Install all required dependencies:
    ```bash
    pnpm install
    ```
-2. Crear el archivo de variables de entorno (si existe `.env.example`):
+2. Duplicate the environment variables config:
    ```bash
    cp .env.example .env
    ```
-   y completar las variables necesarias (por ejemplo `PAYLOAD_SECRET`, `DATABASE_URI`, `DATABASE_TOKEN`, `BLOB_READ_WRITE_TOKEN`, claves de Stripe, etc.).
-3. Levantar el entorno de desarrollo:
+   *Make sure you provide the proper constants like `PAYLOAD_SECRET`, `DATABASE_URI`, `DATABASE_TOKEN`, `BLOB_READ_WRITE_TOKEN`, plus any requisite Stripe IDs.*
+3. Boot the local development server:
    ```bash
    pnpm dev
    ```
-4. Abrir el frontend en `http://localhost:3000`.
-5. Acceder al panel de administración de Payload en la ruta `/admin` para crear el usuario admin inicial y empezar a cargar productos.
+4. Access the main frontend layout visiting `http://localhost:3000`.
+5. Enter the generic payload administration via `/admin` interface to initialize the default administrative user and feed products inside your local snapshot.
 
-## Scripts útiles
+## Useful Scripts
 
-- `pnpm dev` – Ejecuta el entorno de desarrollo.
-- `pnpm build` – Genera el build de producción.
-- `pnpm start` – Levanta la app en modo producción.
-- `pnpm test` – Ejecuta pruebas de integración y E2E.
-- `pnpm test:int` – Solo pruebas de integración (Vitest).
-- `pnpm test:e2e` – Solo pruebas end‑to‑end (Playwright).
+- `pnpm dev` – Fires up the generic development engine.
+- `pnpm build` – Bundles the full Next/Payload production build tree.
+- `pnpm start` – Fires up the standalone previously compiled production server.
+- `pnpm test` – Runs both Integration pipelines and heavy E2E tests strictly.
+- `pnpm test:int` – Focus heavily limiting runs onto Vitest assertions.
+- `pnpm test:e2e` – Focus closely evaluating broad Playwright scenarios.
